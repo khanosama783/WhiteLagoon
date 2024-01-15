@@ -26,25 +26,25 @@ namespace WhiteLagoon.Web.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(Villa obj) 
+        public IActionResult Create(Villa obj)
         {
-            if(obj.Name == obj.Description) 
+            if (obj.Name == obj.Description)
             {
                 ModelState.AddModelError("name", "The Description cannot exactly match the Name.");
             };
 
             if (ModelState.IsValid) {
-                    _db.Villas.Add(obj);
-                    _db.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                _db.Villas.Add(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return View();
         }
 
         public IActionResult Update(int villaId)
         {
-            Villa? obj = _db.Villas.FirstOrDefault(u=>u.Id==villaId);
-            if (obj == null) 
+            Villa? obj = _db.Villas.FirstOrDefault(u => u.Id == villaId);
+            if (obj == null)
             {
                 return RedirectToAction("Error", "Home");
             }
@@ -57,6 +57,29 @@ namespace WhiteLagoon.Web.Controllers
             if (ModelState.IsValid && obj.Id > 0)
             {
                 _db.Villas.Update(obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public IActionResult Delete(int villaId)
+        {
+            Villa? obj = _db.Villas.FirstOrDefault(u => u.Id == villaId);
+            if (obj == null)
+            {
+                return RedirectToAction("Error", "Home");
+            }
+            return View(obj);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Villa obj)
+        {
+            Villa? objFromDb = _db.Villas.FirstOrDefault(u => u.Id == obj.Id);
+            if (objFromDb is not null)
+            {
+               _db.Villas.Remove(objFromDb);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
