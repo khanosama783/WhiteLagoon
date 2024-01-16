@@ -62,53 +62,6 @@ namespace WhiteLagoon.Infrastructure.Data
                     Created_Data = DateTime.Now,
                     Update_Data = DateTime.Now
                 });
-            modelBuilder.Entity<VillaNumber>().HasData(
-                new VillaNumber
-                {
-                    Villa_Number = 101,
-                    VillaId = 1,
-                },
-                new VillaNumber
-                {
-                    Villa_Number = 102,
-                    VillaId = 1,
-                },
-                new VillaNumber
-                {
-                    Villa_Number = 103,
-                    VillaId = 1,
-                },
-                new VillaNumber
-                {
-                    Villa_Number = 104,
-                    VillaId = 1,
-                },
-                new VillaNumber
-                {
-                    Villa_Number = 201,
-                    VillaId = 2,
-                },
-                new VillaNumber
-                {
-                    Villa_Number = 202,
-                    VillaId = 2,
-                },
-                new VillaNumber
-                {
-                    Villa_Number = 203,
-                    VillaId = 2,
-                },
-                new VillaNumber
-                {
-                    Villa_Number = 301,
-                    VillaId = 3,
-                },
-                 new VillaNumber
-                 {
-                     Villa_Number = 302,
-                     VillaId = 3,
-                 }
-                );
         }
     }
 }
