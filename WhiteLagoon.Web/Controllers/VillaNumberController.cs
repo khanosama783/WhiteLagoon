@@ -26,12 +26,17 @@ namespace WhiteLagoon.Web.Controllers
 
 
         [HttpPost]
-        public IActionResult Create(VillaNumber obj)
+        public IActionResult Create(Villa obj)
         {
+            if (obj.Name == obj.Description)
+            {
+                ModelState.AddModelError("name", "The Description cannot exactly match the Name.");
+            };
+
             if (ModelState.IsValid) {
-                _db.VillaNumbers.Add(obj);
+                _db.Villas.Add(obj);
                 _db.SaveChanges();
-                TempData["sucess"] = "The villa number has been created sucessfully";
+                TempData["sucess"] = "The villa has been created sucessfully";
                 return RedirectToAction("Index");
             }
             return View();
